@@ -153,7 +153,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ba0c71e5b2f887446ae89c65de23cc47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -181,8 +181,11 @@ MonoBehaviour:
   _board: {fileID: 0}
   pos_grid: {x: 0, y: 0}
   pos: 0
+  owner: {fileID: 0}
   token: {fileID: 1983909154373099920}
   sprite: {fileID: 21300000, guid: 8c7d1b52c9a9bc94da2f1ac32db590bd, type: 3}
+  type: 0
+  visited: 0
 --- !u!61 &5097850750566736473
 BoxCollider2D:
   m_ObjectHideFlags: 0

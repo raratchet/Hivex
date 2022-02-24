@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class MenuUI : MonoBehaviour
 {
-
-
     public void SinglePlayer()
     {
         GameBuilder.instance.StartSinglePlayer();

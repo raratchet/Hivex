@@ -40,10 +40,21 @@ public class IA_Player : Player
     {
         if(TurnManager.instance.CurrentPlayer == this)
         {
-            if(endPoint.owner != null)
+            if(endPoint.owner != null && endPoint.owner != this)
             {
                 BuildNewPath();
             }
+
+            for(int i = 0; i < Board.instance.RC_COUNT - 1; i++)
+            {
+                List<Tile> row = GetRow(i);
+                if (row.Count == 1 && row[0].owner == null)
+                {
+                    ForcePlay(row);
+                    BuildNewPath();
+                    return;
+                }
+            } 
 
             if(myPath.Count > 0)
             {
@@ -52,34 +63,68 @@ public class IA_Player : Player
                 {
                     if (nextTile == startPoint)
                         FirstTurn();
-                    else
-                        BuildNewPath();
                 }
+                bool flag = false;
+
+                foreach(var tile in myPath)
+                {
+                    if(tile.owner != null && tile.owner != this)
+                    {
+                        flag = true;
+                    }
+                }
+
+                if(flag)
+                {
+                    BuildNewPath();
+                }
+
                 Board.instance.SelectTile(nextTile);
                 myPath.Remove(nextTile);
             }
         }
     }
 
-    void BuildNewPath()
+    void ForcePlay(List<Tile> row)
+    {
+        Board.instance.SelectTile(row[0]);
+    }
+
+    List<Tile> GetRow(int y)
     {
         List<Tile> bottomRow = new List<Tile>();
-        Vector2 pos = new Vector2(0, Board.instance.RC_COUNT - 1);
-        for(int i = 0; i < Board.instance.RC_COUNT; i++)
+        Vector2 pos = new Vector2(0, y);
+        for (int i = 0; i < Board.instance.RC_COUNT; i++)
         {
             pos.x = i;
             Tile aTile = Board.instance.GetTileAt(pos);
-            if(aTile.owner == null)
+            if (aTile.owner == null || aTile.owner == this)
             {
                 bottomRow.Add(aTile);
             }
         }
+        return bottomRow;
+    }
+
+    void BuildNewPath()
+    {
+        List<Tile> bottomRow = GetRow(Board.instance.RC_COUNT - 1 );
+        Tile start = startPoint;
 
         int randomBottom = Random.Range(0, bottomRow.Count);
 
-        endPoint = bottomRow[randomBottom];
+        //Si solo quedan 3 opciones empiezo desde abajo
+        if(bottomRow.Count < 4)
+        {
+            endPoint = start;
+            start = bottomRow[randomBottom];
+        }
+        else
+        {
+            endPoint = bottomRow[randomBottom];
+        }
 
-        List<Tile> newPath = A_star(startPoint, endPoint);
+        List<Tile> newPath = A_star(start, endPoint);
         myPath.Clear();
 
         foreach(Tile tile in newPath)

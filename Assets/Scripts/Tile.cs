@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-
     public SpriteRenderer _renderer;
     public Board _board;
     public Vector2 pos_grid;

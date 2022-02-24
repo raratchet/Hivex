@@ -10,6 +10,8 @@ public class Board : MonoBehaviour
     public Vector2 r_offset;
     public List<Tile> tiles;
 
+    public List<Sprite> skins;
+
     public int RC_COUNT = 7;
 
     #region Singleton
@@ -110,17 +112,22 @@ public class Board : MonoBehaviour
                 if(j == 0)
                 {
                     generated.type = TileType.LEFT_EDGE;
-                }else if( j == RC_COUNT - 1)
+                    generated._renderer.sprite = skins[1];
+                }
+                else if( j == RC_COUNT - 1)
                 {
                     generated.type = TileType.RIGHT_EDGE;
+                    generated._renderer.sprite = skins[2];
                 }
                 else if (i == 0)
                 {
                     generated.type = TileType.TOP_EDGE;
+                    generated._renderer.sprite = skins[3];
                 }
                 else if (i == RC_COUNT - 1)
                 {
                     generated.type = TileType.DOWN_EDGE;
+                    generated._renderer.sprite = skins[4];
                 }
                 else
                 {

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameBuilder : MonoBehaviour
 {
-
     public int RC_COUNT = 7;
 
     public Sprite beeIcon;
@@ -31,12 +30,6 @@ public class GameBuilder : MonoBehaviour
 
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void StartSinglePlayer()
     {
         if(player1 != null)
@@ -47,11 +40,13 @@ public class GameBuilder : MonoBehaviour
 
         player1 = new GameObject().AddComponent<HumanPlayer>();
         player1.transform.parent = this.transform;
+        player1.name = "PLAYER";
         player1.icon = beeIcon;
         player1.playType = Play.Horizontal;
 
         player2 = new GameObject().AddComponent<IA_Player>();
         player2.transform.parent = this.transform;
+        player2.name = "IA_PLAYER";
         player2.icon = waspIcon;
         player2.playType = Play.Vertical;
 
@@ -71,11 +66,13 @@ public class GameBuilder : MonoBehaviour
 
         player1 = new GameObject().AddComponent<HumanPlayer>();
         player1.transform.parent = this.transform;
+        player1.name = "PLAYER 1";
         player1.icon = beeIcon;
         player1.playType = Play.Horizontal;
 
         player2 = new GameObject().AddComponent<HumanPlayer>();
         player2.transform.parent = this.transform;
+        player2.name = "PLAYER 2";
         player2.icon = waspIcon;
         player2.playType = Play.Vertical;
 
