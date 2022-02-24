@@ -9,6 +9,6 @@ Hivex es un proyecto que incorporá el algoritmo A* para jugar contra la computa
 
 ## Imágenes
 
-<img src="https://raratchet.me/IMAGES_FOR_GITHUB/HIVEX-1.PNG.png" width="400" height="200">
+<img src="https://raratchet.me/IMAGES_FOR_GITHUB/HIVEX-1.PNG" width="400" height="200">
 
-<img src="https://raratchet.me/IMAGES_FOR_GITHUB/HIVEX-2.PNG.png" width="400" height="200">
+<img src="https://raratchet.me/IMAGES_FOR_GITHUB/HIVEX-2.PNG" width="400" height="200">
